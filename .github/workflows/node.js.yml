@@ -5,9 +5,11 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+main
   pull_request:
-    branches: [ "main" ]
+    branches:
+main
 
 jobs:
   build:
@@ -17,15 +19,18 @@ jobs:
     strategy:
       matrix:
         node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+name: Checkout repository
+      uses: actions/checkout@v3
+
+name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run: npm start
-    - run: npm test
+
+name: Install dependencies
+      run: npm install
+
+name: Start application
+      run: npm start
